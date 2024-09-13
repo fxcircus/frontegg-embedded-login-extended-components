@@ -1,32 +1,44 @@
-import React from 'react';
-import ReactDOM from 'react-dom'; // For react 17
-// For react 18: import ReactDOM from 'react-dom/client';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-
+import CustomLoaderComponent from './CustomLoaderComponent';
 import { FronteggProvider } from '@frontegg/react';
+import localizations from './localizations';
+import themeOptions from './themeOptions'
 
 const contextOptions = {
   baseUrl: 'https://[YOUR_SUBDOMAIN].frontegg.com',
-  clientId: '[YOUR-CLIENT-ID]'
+  clientId: '[YOUR-CLIENT-ID]',
+  tenantResolver: () => ({
+    tenant: new URLSearchParams(window.location.search).get("organization"),
+  }),
 };
-
 
 const authOptions = {
- // keepSessionAlive: true // Uncomment this in order to maintain the session alive
+  keepSessionAlive: true,
 };
 
-// For react 18: 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-ReactDOM.render(
-    <FronteggProvider 
-      contextOptions={contextOptions}
-      hostedLoginBox={true}
-      authOptions={authOptions}
-      entitlementsOptions={{ enabled: true }}
-    >
+
+const FeProvider = () => {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <div>
+      <FronteggProvider
+        customLoader={setLoading}
+        contextOptions={contextOptions}
+        authOptions={authOptions}
+        hostedLoginBox={false}
+        themeOptions={themeOptions}
+        localizations={localizations}
+        entitlementsOptions={{ enabled: true }}
+      >
         <App />
-    </FronteggProvider>,
-    document.getElementById('root')
-);
+      </FronteggProvider>
+      {loading && <CustomLoaderComponent />}
+    </div>
+  );
+};
+
+ReactDOM.render(<FeProvider />, document.getElementById('root'));

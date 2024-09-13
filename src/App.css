@@ -37,6 +37,18 @@
   }
 }
 
-.AdminPortalCustom{
+.AdminPortalCustom {
   height: 10%;
 }
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.dots {
+  font-size: 50px;
+  color: #333; /* Update text color if needed */
+  height: 30px; /* Ensure height to avoid layout shift */
+}
+

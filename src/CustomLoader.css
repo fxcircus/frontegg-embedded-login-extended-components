@@ -1,0 +1,19 @@
+.custom-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff; /* Update if you need a specific background color */
+  }
+  
+  .loader-logo {
+    width: 150px; /* Adjust size as needed */
+    margin-bottom: 20px;
+  }
+  
+  .custom-loader p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333; /* Update text color if needed */
+  }

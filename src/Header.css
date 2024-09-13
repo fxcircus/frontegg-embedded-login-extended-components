@@ -1,0 +1,29 @@
+/* Header CSS */
+.header {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .header-logo {
+    height: 40px;
+  }
+  
+  .header-links a {
+    color: #000000;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .header-links a:hover {
+    text-decoration: none;
+  }
